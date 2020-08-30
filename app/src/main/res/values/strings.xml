@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">GADS2020 Leaderboard</string>
+    <string name="tab_text_1">Learning Leaders</string>
+    <string name="tab_text_2">Skill IQ Leaders</string>
+    <string name="leaner_item_image_description">Leaner\'s badge</string>
+</resources>
