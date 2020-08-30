@@ -43,7 +43,7 @@
                 tools:text="Name" />
 
             <TextView
-                android:id="@+id/tv_leaner_item_score"
+                android:id="@+id/tv_leaner_item_detail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

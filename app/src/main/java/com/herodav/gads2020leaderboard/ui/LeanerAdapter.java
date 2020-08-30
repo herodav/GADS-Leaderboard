@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.herodav.gads2020leaderboard.Model.Learner;
+import com.herodav.gads2020leaderboard.model.Learner;
 
 import java.util.List;
 
