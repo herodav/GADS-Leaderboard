@@ -1,4 +1,4 @@
-package com.herodav.gads2020leaderboard.ui.main;
+package com.herodav.gads2020leaderboard.ui;
 
 import android.content.Context;
 
@@ -9,8 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.herodav.gads2020leaderboard.R;
-import com.herodav.gads2020leaderboard.ui.LearningLeadersFragment;
-import com.herodav.gads2020leaderboard.ui.SkillIqLeadersFragment;
+
+import static com.herodav.gads2020leaderboard.utils.LearnersCategory.HOURS;
+import static com.herodav.gads2020leaderboard.utils.LearnersCategory.SKILL_IQ;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -29,10 +30,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 1){
-            return SkillIqLeadersFragment.newInstance();
+        if (position == 1) {
+            return new LearnersListFragment(SKILL_IQ);
         }
-        return LearningLeadersFragment.newInstance();
+        return new LearnersListFragment(HOURS);
+
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
 //        return PlaceholderFragment.newInstance(position + 1);

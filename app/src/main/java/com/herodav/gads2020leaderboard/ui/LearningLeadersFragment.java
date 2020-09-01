@@ -8,31 +8,34 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.herodav.gads2020leaderboard.model.Learner;
 import com.herodav.gads2020leaderboard.R;
+import com.herodav.gads2020leaderboard.model.Learner;
 import com.herodav.gads2020leaderboard.utils.LearnersCategory;
-import com.herodav.gads2020leaderboard.utils.Status;
 
 import java.util.List;
 
-import static com.herodav.gads2020leaderboard.utils.LearnersCategory.*;
-import static com.herodav.gads2020leaderboard.utils.Status.*;
+import static com.herodav.gads2020leaderboard.utils.LearnersCategory.HOURS;
+import static com.herodav.gads2020leaderboard.utils.Status.SUCCESS;
 
-public class LearningLeadersFragment extends Fragment {
+public class LearningLeadersFragment extends LearnersListFragment {
 
     private LearnersViewModel mViewModel;
     private RecyclerView mRecyclerView;
     private LeanerAdapter mAdapter;
     private List<Learner> mLearners;
 
-    public static LearningLeadersFragment newInstance() {
-        return new LearningLeadersFragment();
+    public LearningLeadersFragment(LearnersCategory category) {
+        super(category);
     }
+
+/*    public static LearnersListFragment newInstance(LearnersCategory category) {
+
+        return  LearnersListFragment.newInstance(category);
+    }*/
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -41,9 +44,9 @@ public class LearningLeadersFragment extends Fragment {
         setupUi(v);
         mViewModel = ViewModelProviders.of(this).get(LearnersViewModel.class);
         mViewModel.getLearnersByCategory(HOURS).observe(getViewLifecycleOwner(), resource -> {
-            if (resource.status == SUCCESS){
+            if (resource.status == SUCCESS) {
                 mLearners = resource.data;
-            }else {
+            } else {
                 mLearners = null;
                 Toast.makeText(getContext(), resource.message, Toast.LENGTH_LONG).show();
             }
@@ -58,7 +61,7 @@ public class LearningLeadersFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-     private void updateUI() {
+    private void updateUI() {
         setupRecyclerView();
     }
 

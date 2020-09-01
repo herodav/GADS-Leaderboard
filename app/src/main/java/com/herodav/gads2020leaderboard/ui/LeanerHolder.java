@@ -40,7 +40,7 @@ public class LeanerHolder extends RecyclerView.ViewHolder {
         Picasso.get()
                 .load(learner.getBadgeUrl())
                 .placeholder(android.R.drawable.ic_menu_report_image)
-                .error(android.R.drawable.ic_menu_report_image)
+                .error(android.R.drawable.ic_menu_report_image)//todo: get the badge from res
                 .into(imgBadge);
     }
 }

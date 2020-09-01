@@ -1,21 +1,37 @@
 package com.herodav.gads2020leaderboard.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "learners_table",
+        primaryKeys = {"name", "score", "hours", "country"})
 public class Learner {
 
+    @NonNull
     @SerializedName("name")
     private String name;
+
     @SerializedName("score")
+    @ColumnInfo(name = "score", defaultValue = "0")
     private int score;
+
     @SerializedName("hours")
+    @ColumnInfo(name = "hours", defaultValue = "0")
     private int hours;
-    @SerializedName("badgeUrl")
-    private String badgeUrl;
+
+    @NonNull
     @SerializedName("country")
     private String country;
 
+    @SerializedName("badgeUrl")
+    private String badgeUrl;
+
     public Learner() {
+        name = "";
+        country = "";
     }
 
     public String getName() {
@@ -57,4 +73,5 @@ public class Learner {
     public void setBadgeUrl(String badgeUrl) {
         this.badgeUrl = badgeUrl;
     }
+
 }

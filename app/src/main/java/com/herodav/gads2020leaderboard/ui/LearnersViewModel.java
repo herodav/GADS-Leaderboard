@@ -7,8 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.herodav.gads2020leaderboard.data.LearnerRepository;
+import com.herodav.gads2020leaderboard.model.DataResource;
 import com.herodav.gads2020leaderboard.model.Learner;
-import com.herodav.gads2020leaderboard.model.NetworkResource;
 import com.herodav.gads2020leaderboard.utils.LearnersCategory;
 
 import java.util.List;
@@ -21,10 +21,10 @@ public class LearnersViewModel extends AndroidViewModel {
 
     public LearnersViewModel(@NonNull Application application) {
         super(application);
-        mLearnerRepository = new LearnerRepository();
+        mLearnerRepository = new LearnerRepository(application);
     }
 
-    public MutableLiveData<NetworkResource<List<Learner>>> getLearnersByCategory(LearnersCategory category) {
+    public MutableLiveData<DataResource<List<Learner>>> getLearnersByCategory(LearnersCategory category) {
         return category.equals(HOURS) ? mLearnerRepository.getLeaningLeaders()
                 : mLearnerRepository.getSkillIqLeaders();
     }

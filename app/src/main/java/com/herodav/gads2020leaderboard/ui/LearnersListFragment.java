@@ -15,39 +15,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.herodav.gads2020leaderboard.R;
 import com.herodav.gads2020leaderboard.model.Learner;
+import com.herodav.gads2020leaderboard.utils.LearnersCategory;
 
 import java.util.List;
 
-import static com.herodav.gads2020leaderboard.utils.LearnersCategory.SKILL_IQ;
 import static com.herodav.gads2020leaderboard.utils.Status.SUCCESS;
 
-public class SkillIqLeadersFragment extends Fragment {
-
+public class LearnersListFragment extends Fragment {
+    private LearnersCategory mLearnersCategory;
 
     private LearnersViewModel mViewModel;
     private RecyclerView mRecyclerView;
     private LeanerAdapter mAdapter;
     private List<Learner> mLearners;
 
-    public static SkillIqLeadersFragment newInstance() {
-        return new SkillIqLeadersFragment();
+    public LearnersListFragment(LearnersCategory category) {
+        mLearnersCategory = category;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.skill_iq_leaders_fragment, container, false);
+        View v = inflater.inflate(R.layout.learning_leaders_fragment, container, false);
         setupUi(v);
         mViewModel = ViewModelProviders.of(this).get(LearnersViewModel.class);
-        mViewModel.getLearnersByCategory(SKILL_IQ).observe(getViewLifecycleOwner(), resource -> {
+        mViewModel.getLearnersByCategory(mLearnersCategory).observe(getViewLifecycleOwner(), resource -> {
             if (resource.status == SUCCESS) {
                 mLearners = resource.data;
+                updateUI();
             } else {
                 mLearners = null;
                 Toast.makeText(getContext(), resource.message, Toast.LENGTH_LONG).show();
             }
-            updateUI();
         });
+
         return v;
     }
 
@@ -64,6 +65,7 @@ public class SkillIqLeadersFragment extends Fragment {
         if (mAdapter == null) {
             mAdapter = new LeanerAdapter(mLearners, getContext());
         }
+
         mAdapter.setLearners(mLearners);
         mRecyclerView.setAdapter(mAdapter);
     }
