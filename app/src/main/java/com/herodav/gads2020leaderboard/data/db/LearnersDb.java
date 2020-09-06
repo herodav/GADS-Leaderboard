@@ -6,15 +6,20 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.herodav.gads2020leaderboard.model.Learner;
+import com.herodav.gads2020leaderboard.data.db.dao.HoursLeaderDao;
+import com.herodav.gads2020leaderboard.data.db.dao.SkillIqLeaderDao;
+import com.herodav.gads2020leaderboard.data.db.entities.HoursLeader;
+import com.herodav.gads2020leaderboard.data.db.entities.SkillIqLeader;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Learner.class}, version = 1, exportSchema = false)
+@Database(entities = {SkillIqLeader.class, HoursLeader.class},
+        version = 1, exportSchema = false)
 public abstract class LearnersDb extends RoomDatabase {
 
-    public abstract LearnerDao mLearnerDao();
+    public abstract HoursLeaderDao mHoursLeaderDao();
+    public abstract SkillIqLeaderDao mSkillIqLeaderDao();
 
     private static volatile LearnersDb INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

@@ -8,29 +8,22 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.herodav.gads2020leaderboard.R;
-import com.herodav.gads2020leaderboard.data.db.entities.SkillIqLeader;
+import com.herodav.gads2020leaderboard.data.db.entities.HoursLeader;
 
 import static com.herodav.gads2020leaderboard.utils.Status.SUCCESS;
 
-public class SkillIqLeadersFragment extends LeadersListFragment<SkillIqLeader> {
-
-
-    public static SkillIqLeadersFragment newInstance() {
-        return new SkillIqLeadersFragment();
-    }
+public class HoursLeadersFragment extends LeadersListFragment<HoursLeader> {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.skill_iq_leaders_fragment, container, false);
+        View v = inflater.inflate(R.layout.learning_leaders_fragment, container, false);
         setupUi(v);
-        SkillIqLeadersViewModel viewModel = new ViewModelProvider(this).get(SkillIqLeadersViewModel.class);
-//        SkillIqLeadersViewModel viewModel = ViewModelProviders.of(this).get(SkillIqLeadersViewModel.class);
-        viewModel.getSkillIqLeaders().observe(getViewLifecycleOwner(), resource -> {
+        HoursLeaderViewModel mViewModel = ViewModelProviders.of(this).get(HoursLeaderViewModel.class);
+        mViewModel.getHoursLeaders().observe(getViewLifecycleOwner(), resource -> {
             if (resource.status == SUCCESS) {
                 setLeaders(resource.data);
             } else {
@@ -39,8 +32,8 @@ public class SkillIqLeadersFragment extends LeadersListFragment<SkillIqLeader> {
             }
             updateUI();
         });
+
         return v;
     }
-
 
 }

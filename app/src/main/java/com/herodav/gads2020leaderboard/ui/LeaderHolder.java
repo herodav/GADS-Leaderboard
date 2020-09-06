@@ -8,39 +8,43 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.herodav.gads2020leaderboard.R;
-import com.herodav.gads2020leaderboard.model.Learner;
+import com.herodav.gads2020leaderboard.data.db.entities.HoursLeader;
+import com.herodav.gads2020leaderboard.data.db.entities.SkillIqLeader;
+import com.herodav.gads2020leaderboard.model.Leader;
 import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
-public class LeanerHolder extends RecyclerView.ViewHolder {
+public class LeaderHolder<T> extends RecyclerView.ViewHolder {
     private ImageView imgBadge;
     private TextView tvName, tvDetail;
 
-    public LeanerHolder(LayoutInflater inflater, ViewGroup parent) {
-        super(inflater.inflate(R.layout.learner_item, parent, false));
+    public LeaderHolder(LayoutInflater inflater, ViewGroup parent) {
+        super(inflater.inflate(R.layout.leader_item, parent, false));
 
         imgBadge = (ImageView) itemView.findViewById(R.id.img_leaner_item_badge);
         tvName = (TextView) itemView.findViewById(R.id.tv_leaner_item_name);
         tvDetail = (TextView) itemView.findViewById(R.id.tv_leaner_item_detail);
     }
 
-    public void bind(Learner learner) {
+    public void bind(T leader) {
         String detail = "";
-        if (learner.getScore() > 0) {
+        if (leader instanceof SkillIqLeader) {
             detail = String.format(Locale.getDefault(), "%d skill IQ score, %s",
-                    learner.getScore(), learner.getCountry());
+                    ((SkillIqLeader) leader).getScore(), ((SkillIqLeader) leader).getCountry());
         }
-        if (learner.getHours() > 0) {
+
+        if (leader instanceof HoursLeader) {
             detail = String.format(Locale.getDefault(), "%d learning hours, %s",
-                    learner.getHours(), learner.getCountry());
+                    ((HoursLeader) leader).getHours(), ((HoursLeader) leader).getCountry());
         }
-        tvName.setText(learner.getName());
+
+        tvName.setText(((Leader) leader).getName());
         tvDetail.setText(detail);
         Picasso.get()
-                .load(learner.getBadgeUrl())
+                .load(((Leader) leader).getBadgeUrl())
                 .placeholder(android.R.drawable.ic_menu_report_image)
-                .error(android.R.drawable.ic_menu_report_image)//todo: get the badge from res
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(imgBadge);
     }
 }
