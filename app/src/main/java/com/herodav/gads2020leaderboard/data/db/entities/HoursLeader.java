@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import com.google.gson.annotations.SerializedName;
 import com.herodav.gads2020leaderboard.model.Leader;
 
-@Entity (tableName = "h_leader", primaryKeys = {"name", "hours", "country"})
+@Entity(tableName = "h_leader", primaryKeys = {"name", "hours", "country"})
 public class HoursLeader extends Leader {
 
     @SerializedName("hours")

@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.herodav.gads2020leaderboard.R;
 import com.herodav.gads2020leaderboard.data.db.entities.SkillIqLeader;

@@ -6,11 +6,8 @@ import android.os.AsyncTask;
 import androidx.lifecycle.MutableLiveData;
 
 import com.herodav.gads2020leaderboard.data.db.LearnersDb;
-import com.herodav.gads2020leaderboard.data.db.dao.HoursLeaderDao;
 import com.herodav.gads2020leaderboard.data.db.dao.SkillIqLeaderDao;
-import com.herodav.gads2020leaderboard.data.db.entities.HoursLeader;
 import com.herodav.gads2020leaderboard.data.db.entities.SkillIqLeader;
-import com.herodav.gads2020leaderboard.data.network.HoursLeaderService;
 import com.herodav.gads2020leaderboard.data.network.ServiceGenerator;
 import com.herodav.gads2020leaderboard.data.network.SkillIqLeaderService;
 import com.herodav.gads2020leaderboard.model.DataResource;

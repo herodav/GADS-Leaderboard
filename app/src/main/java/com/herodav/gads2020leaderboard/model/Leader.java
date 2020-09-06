@@ -1,12 +1,8 @@
 package com.herodav.gads2020leaderboard.model;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.lang.annotation.Inherited;
 
 /*@Entity(tableName = "learners_table",
         primaryKeys = {"name", "score", "hours", "country"})*/

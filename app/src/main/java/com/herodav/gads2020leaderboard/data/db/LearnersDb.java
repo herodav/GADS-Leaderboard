@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 public abstract class LearnersDb extends RoomDatabase {
 
     public abstract HoursLeaderDao mHoursLeaderDao();
+
     public abstract SkillIqLeaderDao mSkillIqLeaderDao();
 
     private static volatile LearnersDb INSTANCE;

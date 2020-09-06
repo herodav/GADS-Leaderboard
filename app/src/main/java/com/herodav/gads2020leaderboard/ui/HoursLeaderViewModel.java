@@ -21,7 +21,7 @@ public class HoursLeaderViewModel extends AndroidViewModel {
         mRepository = new HoursLeaderRepository(application);
     }
 
-    public MutableLiveData<DataResource<List<HoursLeader>>> getHoursLeaders(){
+    public MutableLiveData<DataResource<List<HoursLeader>>> getHoursLeaders() {
         return mRepository.getHoursLeaders();
     }
 }

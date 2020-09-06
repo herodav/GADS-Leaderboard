@@ -5,9 +5,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.herodav.gads2020leaderboard.model.Leader;
 import com.herodav.gads2020leaderboard.data.db.entities.HoursLeader;
 import com.herodav.gads2020leaderboard.data.db.entities.SkillIqLeader;
+import com.herodav.gads2020leaderboard.model.Leader;
 
 import java.util.List;
 
