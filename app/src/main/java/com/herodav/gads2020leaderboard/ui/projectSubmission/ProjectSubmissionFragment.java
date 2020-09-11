@@ -53,7 +53,7 @@ public class ProjectSubmissionFragment extends Fragment {
         edtEmail = (TextInputEditText) v.findViewById(R.id.edt_email);
         edtProjectUrl = (TextInputEditText) v.findViewById(R.id.edt_project_url);
         btnSubmit = (Button) v.findViewById(R.id.btn_submit);
-        form = (ConstraintLayout)v.findViewById(R.id.form);
+        form = (ConstraintLayout) v.findViewById(R.id.form);
         progressBar = (ProgressBar) v.findViewById(R.id.submit_progressBar);
         btnSubmit.setOnClickListener((btn) -> {
             if (isValidForm()) {
@@ -67,7 +67,7 @@ public class ProjectSubmissionFragment extends Fragment {
 
     public void attemptSubmission(User user) {
         showProgress();
-        if (mDialog.isVisible()){
+        if (mDialog.isVisible()) {
             mDialog.dismiss();
         }
         mViewModel.submit(user).observe(getViewLifecycleOwner(), resource -> {
@@ -82,11 +82,12 @@ public class ProjectSubmissionFragment extends Fragment {
 
     }
 
-    private void showProgress(){
+    private void showProgress() {
         form.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
     }
-    private void hideProgress(){
+
+    private void hideProgress() {
         form.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
     }

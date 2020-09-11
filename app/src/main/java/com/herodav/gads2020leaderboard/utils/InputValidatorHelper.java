@@ -24,8 +24,8 @@ public class InputValidatorHelper {
         return TextUtils.isEmpty(string);
     }
 
-    public boolean isValidField(EditText editText, boolean condition, String errorMessage){
-        if (!condition){
+    public boolean isValidField(EditText editText, boolean condition, String errorMessage) {
+        if (!condition) {
             editText.requestFocus();
             editText.setError(errorMessage);
         }

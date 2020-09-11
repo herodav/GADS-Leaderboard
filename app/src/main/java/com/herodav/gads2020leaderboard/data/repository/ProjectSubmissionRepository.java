@@ -32,7 +32,7 @@ public class ProjectSubmissionRepository {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     mSubmitResponse.setValue(DataResource.success(SUCCESS));
-                }else {
+                } else {
                     mSubmitResponse.setValue(DataResource.error(NETWORK_ERROR, null));
                 }
             }
