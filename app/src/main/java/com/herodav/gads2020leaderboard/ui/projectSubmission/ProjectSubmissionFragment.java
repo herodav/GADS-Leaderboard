@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,17 +22,21 @@ import com.herodav.gads2020leaderboard.utils.InputValidatorHelper;
 
 import static com.herodav.gads2020leaderboard.utils.Status.SUCCESS;
 
-public class ProjectSubmissionFragment extends Fragment implements AppDialog.DialogEvents {
+public class ProjectSubmissionFragment extends Fragment {
 
     TextInputEditText edtFirstName, edtLastName, edtEmail, edtProjectUrl;
     Button btnSubmit;
     String mFirstName, mLastName, mEmail, mRepoUrl;
     private ProjectSubmissionViewModel mViewModel;
     private AppDialog mDialog;
+    ConstraintLayout form;
+    ProgressBar progressBar;
+
 
     public static ProjectSubmissionFragment newInstance() {
         return new ProjectSubmissionFragment();
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -47,23 +53,42 @@ public class ProjectSubmissionFragment extends Fragment implements AppDialog.Dia
         edtEmail = (TextInputEditText) v.findViewById(R.id.edt_email);
         edtProjectUrl = (TextInputEditText) v.findViewById(R.id.edt_project_url);
         btnSubmit = (Button) v.findViewById(R.id.btn_submit);
+        form = (ConstraintLayout)v.findViewById(R.id.form);
+        progressBar = (ProgressBar) v.findViewById(R.id.submit_progressBar);
         btnSubmit.setOnClickListener((btn) -> {
             if (isValidForm()) {
+                final User user = new User(mFirstName, mLastName, mEmail, mRepoUrl);
+
+                mViewModel.setUser(user);
                 displayDialog(Type.WARNING);
             }
         });
     }
 
-    private void attemptSubmission() {
-        final User user = new User(mFirstName, mLastName, mEmail, mRepoUrl);
+    public void attemptSubmission(User user) {
+        showProgress();
+        if (mDialog.isVisible()){
+            mDialog.dismiss();
+        }
         mViewModel.submit(user).observe(getViewLifecycleOwner(), resource -> {
             if (resource.status == SUCCESS) {
+                hideProgress();
                 displayDialog(Type.SUCCESS);
             } else {
+                hideProgress();
                 displayDialog(Type.ERROR);
             }
         });
 
+    }
+
+    private void showProgress(){
+        form.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+    private void hideProgress(){
+        form.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     private void displayDialog(Type type) {
@@ -73,6 +98,8 @@ public class ProjectSubmissionFragment extends Fragment implements AppDialog.Dia
     }
 
     private boolean isValidForm() {
+        mFirstName = edtFirstName.getText().toString().trim();
+        mLastName = edtLastName.getText().toString().trim();
         mEmail = edtEmail.getText().toString().trim();
         mRepoUrl = edtProjectUrl.getText().toString().trim();
 
@@ -88,8 +115,4 @@ public class ProjectSubmissionFragment extends Fragment implements AppDialog.Dia
                         edtFirstName, edtLastName, edtEmail, edtProjectUrl);
     }
 
-    @Override
-    public void onActionClicked() {
-        attemptSubmission();
-    }
 }

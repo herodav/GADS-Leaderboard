@@ -12,13 +12,23 @@ import com.herodav.gads2020leaderboard.model.User;
 
 public class ProjectSubmissionViewModel extends AndroidViewModel {
     private ProjectSubmissionRepository mRepository;
+    private MutableLiveData<User> mUser;
 
     public ProjectSubmissionViewModel(@NonNull Application application) {
         super(application);
         mRepository = new ProjectSubmissionRepository();
+        mUser = new MutableLiveData<>();
     }
 
     public MutableLiveData<DataResource<String>> submit(User user) {
         return mRepository.submit(user);
+    }
+
+    public MutableLiveData<User> getUser() {
+        return mUser;
+    }
+
+    public void setUser(User user) {
+        mUser.setValue(user);
     }
 }

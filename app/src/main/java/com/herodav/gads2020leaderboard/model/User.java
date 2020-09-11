@@ -1,9 +1,16 @@
 package com.herodav.gads2020leaderboard.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+
+    @SerializedName("firstName")
     private String firstName;
+    @SerializedName("lastName")
     private String lastName;
+    @SerializedName("email")
     private String email;
+    @SerializedName("url")
     private String repoUrl;
 
     public User(String firstName, String lastName, String email, String repoUrl) {

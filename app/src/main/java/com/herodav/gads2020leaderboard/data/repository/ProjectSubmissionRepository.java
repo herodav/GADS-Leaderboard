@@ -12,6 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.herodav.gads2020leaderboard.utils.Constants.NETWORK_ERROR;
+import static com.herodav.gads2020leaderboard.utils.Constants.SUCCESS;
 
 public class ProjectSubmissionRepository {
     MutableLiveData<DataResource<String>> mSubmitResponse;
@@ -26,18 +27,18 @@ public class ProjectSubmissionRepository {
                         user.getFirstName(),
                         user.getLastName(),
                         user.getRepoUrl()
-                ).enqueue(new Callback<String>() {
+                ).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful() & response.body() != null) {
-                    mSubmitResponse.setValue(DataResource.success(response.body()));
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    mSubmitResponse.setValue(DataResource.success(SUCCESS));
                 }else {
                     mSubmitResponse.setValue(DataResource.error(NETWORK_ERROR, null));
                 }
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 mSubmitResponse.setValue(DataResource.error(NETWORK_ERROR, null));
             }
         });

@@ -4,5 +4,5 @@ public class Constants {
 
     public static final String NETWORK_ERROR = "Network error";
     public static final String DATABASE_ERROR = "Local data unavailable";
-
+    public static final String SUCCESS = "Project submitted";
 }

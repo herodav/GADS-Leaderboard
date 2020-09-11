@@ -139,6 +139,7 @@ public class AppDialog extends DialogFragment {
 
                 btnAction.setOnClickListener(v -> {
                     if (mDialogEvents != null) {
+                        this.dismiss();
                         mDialogEvents.onActionClicked();
                     }
                 });
