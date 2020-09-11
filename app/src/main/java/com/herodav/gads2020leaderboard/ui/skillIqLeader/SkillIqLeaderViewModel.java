@@ -1,4 +1,4 @@
-package com.herodav.gads2020leaderboard.ui;
+package com.herodav.gads2020leaderboard.ui.skillIqLeader;
 
 import android.app.Application;
 
@@ -12,11 +12,11 @@ import com.herodav.gads2020leaderboard.model.DataResource;
 
 import java.util.List;
 
-public class SkillIqLeadersViewModel extends AndroidViewModel {
+public class SkillIqLeaderViewModel extends AndroidViewModel {
 
     SkillIqLeaderRepository mRepository;
 
-    public SkillIqLeadersViewModel(@NonNull Application application) {
+    public SkillIqLeaderViewModel(@NonNull Application application) {
         super(application);
         mRepository = new SkillIqLeaderRepository(application);
     }

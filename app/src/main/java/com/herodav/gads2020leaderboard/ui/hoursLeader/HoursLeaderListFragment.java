@@ -1,4 +1,4 @@
-package com.herodav.gads2020leaderboard.ui;
+package com.herodav.gads2020leaderboard.ui.hoursLeader;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,15 +12,16 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.herodav.gads2020leaderboard.R;
 import com.herodav.gads2020leaderboard.data.db.entities.HoursLeader;
+import com.herodav.gads2020leaderboard.ui.LeaderListFragment;
 
 import static com.herodav.gads2020leaderboard.utils.Status.SUCCESS;
 
-public class HoursLeadersFragment extends LeadersListFragment<HoursLeader> {
+public class HoursLeaderListFragment extends LeaderListFragment<HoursLeader> {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.learning_leaders_fragment, container, false);
+        View v = inflater.inflate(R.layout.leaders_list_fragment, container, false);
         setupUi(v);
         HoursLeaderViewModel mViewModel = ViewModelProviders.of(this).get(HoursLeaderViewModel.class);
         mViewModel.getHoursLeaders().observe(getViewLifecycleOwner(), resource -> {

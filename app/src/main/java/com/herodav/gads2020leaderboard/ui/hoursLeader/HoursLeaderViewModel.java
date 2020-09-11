@@ -1,4 +1,4 @@
-package com.herodav.gads2020leaderboard.ui;
+package com.herodav.gads2020leaderboard.ui.hoursLeader;
 
 import android.app.Application;
 

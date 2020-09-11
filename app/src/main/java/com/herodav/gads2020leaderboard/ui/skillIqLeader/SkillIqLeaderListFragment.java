@@ -1,4 +1,4 @@
-package com.herodav.gads2020leaderboard.ui;
+package com.herodav.gads2020leaderboard.ui.skillIqLeader;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,23 +12,23 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.herodav.gads2020leaderboard.R;
 import com.herodav.gads2020leaderboard.data.db.entities.SkillIqLeader;
+import com.herodav.gads2020leaderboard.ui.LeaderListFragment;
 
 import static com.herodav.gads2020leaderboard.utils.Status.SUCCESS;
 
-public class SkillIqLeadersFragment extends LeadersListFragment<SkillIqLeader> {
+public class SkillIqLeaderListFragment extends LeaderListFragment<SkillIqLeader> {
 
 
-    public static SkillIqLeadersFragment newInstance() {
-        return new SkillIqLeadersFragment();
+    public static SkillIqLeaderListFragment newInstance() {
+        return new SkillIqLeaderListFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.skill_iq_leaders_fragment, container, false);
+        View v = inflater.inflate(R.layout.leaders_list_fragment, container, false);
         setupUi(v);
-        SkillIqLeadersViewModel viewModel = new ViewModelProvider(this).get(SkillIqLeadersViewModel.class);
-//        SkillIqLeadersViewModel viewModel = ViewModelProviders.of(this).get(SkillIqLeadersViewModel.class);
+        SkillIqLeaderViewModel viewModel = new ViewModelProvider(this).get(SkillIqLeaderViewModel.class);
         viewModel.getSkillIqLeaders().observe(getViewLifecycleOwner(), resource -> {
             if (resource.status == SUCCESS) {
                 setLeaders(resource.data);

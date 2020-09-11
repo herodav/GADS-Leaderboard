@@ -11,18 +11,18 @@ import com.herodav.gads2020leaderboard.model.Leader;
 
 import java.util.List;
 
-public class LeadersListFragment<T extends Leader> extends Fragment {
+public class LeaderListFragment<T extends Leader> extends Fragment {
 
     private RecyclerView mRecyclerView;
     private LeaderAdapter<T> mAdapter;
     private List<T> mLeaders;
 
-    void setupUi(View v) {
+    public void setupUi(View v) {
         mRecyclerView = v.findViewById(R.id.learners_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    void updateUI() {
+    public void updateUI() {
         setupRecyclerView();
     }
 

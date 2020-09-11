@@ -3,4 +3,19 @@
     <string name="tab_text_1">Learning Leaders</string>
     <string name="tab_text_2">Skill IQ Leaders</string>
     <string name="leaner_item_image_description">Leaner\'s badge</string>
+    <string name="toolbar_title">LEADERBOARD</string>
+    <string name="submit">Submit</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="hint_project_link">Project on GITHUB (link)</string>
+    <string name="url_prefix">https://github.com/</string>
+    <string name="error_invalid_email">Invalid Email</string>
+    <string name="error_github_link">should be a Github link</string>
+    <string name="error_required_field">This field is required</string>
+    <string name="yes">YES</string>
+    <string name="message_prompt_confirm">Are you sure?</string>
+    <string name="message_success">Submission successful</string>
+    <string name="message_failure">Submission not Successful</string>
+    <string name="project_submission">Project Submission</string>
 </resources>
